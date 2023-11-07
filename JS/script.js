@@ -28,19 +28,25 @@ side.innerHTML = imgVista(images)
 let img = "";
 let imgActive = 0
 
-primaImg(images)
+//PRIMA IMG
+primaImg(images);
+let loop = setInterval(autoplay, 3000)
+console.log(loop);
 
+
+// NEXT
 document.querySelector(".next").addEventListener("click", function(){
     document.querySelector(".active").classList.remove("active");
-
+    document.querySelector(".border-active").classList.remove("border-active");
     imgActive++
     if (imgActive > images.length -1) {
         imgActive = 0;
     }
     document.querySelectorAll(".item")[imgActive].classList.add("active");
+    document.querySelectorAll(".img-side")[imgActive].classList.add("border-active");
     console.log(imgActive);
 })
-
+//PREV
 document.querySelector(".prev").addEventListener("click", function(){
     document.querySelector(".active").classList.remove("active");
 
@@ -51,7 +57,22 @@ document.querySelector(".prev").addEventListener("click", function(){
     document.querySelectorAll(".item")[imgActive].classList.add("active");
     console.log(imgActive);
 })
-
+// stop
+document.querySelector(".stop-auto").addEventListener("click" , function(){
+    clearInterval(loop)
+    console.log(loop);
+})
+//play
+document.querySelector(".start-auto").addEventListener("click", function(){
+    loop = setInterval(autoplay, 3000)
+    console.log(loop);
+})
+//reverse
+document.querySelector(".rev-auto").addEventListener("click", function(){
+    clearInterval(loop)
+    loop = setInterval(autoplayRev, 3000)
+    console.log(loop);
+})
 
 // FUNZIONI
 // mostra la prima img
@@ -78,18 +99,37 @@ function primaImg(array) {
             </div>`
        }
     }
-    }
-
+}
 // funzione ruota immagine in vista
 function imgVista (array){
 let imgProd = "";
 for (let i = 0; i < array.length; i++){
     const prod = array[i]
     imgProd += `
-    <div class="img-side active">
+    <div class="img-side">
         <img src="${prod.image}" alt="${prod.title} photo">
     </div>`  
+    console.log(imgProd);
 }
-console.log(imgProd);
 return imgProd;
+}
+//Funzione autoplay
+function autoplay (){
+    document.querySelector(".active").classList.remove("active");
+    imgActive++
+    if (imgActive > images.length -1) {
+        imgActive = 0;
+    }
+    document.querySelectorAll(".item")[imgActive].classList.add("active");
+    console.log(imgActive,);
+}
+//Funzione autoplay rev
+function autoplayRev (){
+    document.querySelector(".active").classList.remove("active");
+    imgActive--
+    if (imgActive < 0) {
+        imgActive = images.length -1;
+    }
+    document.querySelectorAll(".item")[imgActive].classList.add("active");
+    console.log(imgActive,lll);
 }

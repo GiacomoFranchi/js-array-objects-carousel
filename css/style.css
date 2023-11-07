@@ -67,6 +67,14 @@ body{
     object-fit: cover;
 }
 
+button{
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    margin: 0.1rem;
+    font-size: 1.2rem;
+    color: black;
+}
+
 .prev, .next{
     width: 30px;
     height: 30px;
@@ -74,18 +82,18 @@ body{
     border-radius: 50%;
     background: #ccc;
     position: absolute;
-    left: 50%;
+    left: 78%;
     transform: translate(-50%);
     cursor: pointer;
     z-index: 999;
 }
 
 .prev {
-    top: 0;
+    top: 20%;
 }
 
 .next {
-    bottom: 0;
+    bottom: 20%;
 }
 
 .prev::after {
@@ -116,6 +124,17 @@ body{
     transform: translate(-50%) rotate(135deg);
 }
 
+.control{
+    position: absolute;
+    top: 21%;
+    left: 16%;
+    cursor: pointer;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.1);
+}
 .active{
     display: block;
+}
+.border-active{
+    border: 3px solid greenyellow;
 }
