@@ -23,11 +23,12 @@ const images = [
 ];
 
 const bigImg = document.querySelector(".big-img")
-bigImg.innerHTML = mostraImg(images);
 const side = document.querySelector(".side")
 side.innerHTML = imgVista(images)
 let img = "";
 let imgActive = 0
+
+primaImg(images)
 
 document.querySelector(".next").addEventListener("click", function(){
     document.querySelector(".active").classList.remove("active");
@@ -36,34 +37,48 @@ document.querySelector(".next").addEventListener("click", function(){
     if (imgActive > images.length -1) {
         imgActive = 0;
     }
+    document.querySelectorAll(".item")[imgActive].classList.add("active");
+    console.log(imgActive);
+})
 
-    //document.querySelectorAll(".item")[imgActive].classList.add("active");
-    //console.log(imgActive);
+document.querySelector(".prev").addEventListener("click", function(){
+    document.querySelector(".active").classList.remove("active");
+
+    imgActive--
+    if (imgActive == -1) {
+        imgActive = images.length -1;
+    }
+    document.querySelectorAll(".item")[imgActive].classList.add("active");
+    console.log(imgActive);
 })
 
 
-
 // FUNZIONI
-// funzione crea immagine in vista
-function mostraImg (array){
-    let result = "";
-for (let i = 0; i < array.length; i++) {
-   let prod = array[i];
-   if (i ==  0){
-       result += `
-       <div class= "item">
-            <img src="${prod.image}" alt="${prod.title} photo">
-            <div class="note">
-                <h2>${prod.title}</h2>
-                <p> ${prod.text}</p>
-            </div>
-        </div>`   
-        console.log(result);
-        return result ; 
-   }
-
-}
-}
+// mostra la prima img
+function primaImg(array) {
+    for (let i = 0; i < array.length; i++) {
+       let prod = array[i];
+       if (i ==  0){
+           bigImg.innerHTML += `
+           <div class= "item active">
+                <img src="${prod.image}" alt="${prod.title} photo">
+                <div class="note">
+                    <h2>${prod.title}</h2>
+                    <p> ${prod.text}</p>
+                </div>
+            </div>`   
+       } else{
+           bigImg.innerHTML += `
+           <div class= "item">
+                <img src="${prod.image}" alt="${prod.title} photo">
+                <div class="note">
+                    <h2>${prod.title}</h2>
+                    <p> ${prod.text}</p>
+                </div>
+            </div>`
+       }
+    }
+    }
 
 // funzione ruota immagine in vista
 function imgVista (array){
