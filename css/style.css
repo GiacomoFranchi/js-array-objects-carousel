@@ -32,6 +32,10 @@ body{
 .active{
     display: block;
 }
+.item{
+    width: 100%;
+    height: 100%;
+}
 
 .big-img img{
     width: 100%;

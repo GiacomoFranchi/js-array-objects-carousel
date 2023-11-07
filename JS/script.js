@@ -22,13 +22,24 @@ const images = [
     }
 ];
 
-const container = document.querySelector(".container")
-container.innerHTML = mostraImg(images);
-const side = document.querySelector(".container.side")
+const bigImg = document.querySelector(".big-img")
+bigImg.innerHTML = mostraImg(images);
+const side = document.querySelector(".side")
+side.innerHTML = imgVista(images)
 let img = "";
 let imgActive = 0
 
+document.querySelector(".next").addEventListener("click", function(){
+    document.querySelector(".active").classList.remove("active");
 
+    imgActive++
+    if (imgActive > images.length -1) {
+        imgActive = 0;
+    }
+
+    //document.querySelectorAll(".item")[imgActive].classList.add("active");
+    //console.log(imgActive);
+})
 
 
 
@@ -40,24 +51,17 @@ for (let i = 0; i < array.length; i++) {
    let prod = array[i];
    if (i ==  0){
        result += `
-       <div class="big-img active">
-           <img src="${prod.image}" alt="${prod.title} photo">
-           <div class="note">
-               <h2>${prod.title}</h2>
-               <p> ${prod.text}</p>
-           </div>
-       </div>`    
-   }else{
-   result += `
-    <div class="big-img">
-        <img src="${prod.image}" alt="${prod.title} photo">
-        <div class="note">
-            <h2>${prod.title}</h2>
-            <p> ${prod.text}</p>
-        </div>
-    </div>` 
+       <div class= "item">
+            <img src="${prod.image}" alt="${prod.title} photo">
+            <div class="note">
+                <h2>${prod.title}</h2>
+                <p> ${prod.text}</p>
+            </div>
+        </div>`   
+        console.log(result);
+        return result ; 
    }
-   return result ;
+
 }
 }
 
